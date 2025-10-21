@@ -13,6 +13,7 @@ const PORT = 8080;
 // middlewares
 app.use(express.json());
 app.use(cors());
+app.use("/uploads", express.static("uploads"));
 
 app.get("/", (req, res) => {
   res.send("server is working ...");
