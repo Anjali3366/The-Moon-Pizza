@@ -32,3 +32,30 @@ export const addFood = async (req, res) => {
     res.status(500).json({ success: false, error: "Internal Server Error!" });
   }
 };
+
+// all food list --tested
+export const listFood = async (req, res) => {
+  try {
+    const foods = await Food.find({});
+
+    res.status(201).json({ success: true, data: foods });
+  } catch (err) {
+    console.error("Error in listFood Controller:", err);
+    res.status(500).json({ success: false, error: "Internal Server Error!" });
+  }
+};
+
+// remove food Item --not tested !
+export const removeFood = async (req, res) => {
+  try {
+    const food = await Food.findById(req.body.id);
+    fs.unlink(`uploads/${food.image}`, () => {});
+    await Food.findByIdAndDelete(req.body.id);
+    res
+      .status(201)
+      .json({ success: true, message: "Food successfully removed !" });
+  } catch (err) {
+    console.error("Error in removeFood Controller:", err);
+    res.status(500).json({ success: false, error: "Internal Server Error!" });
+  }
+};
