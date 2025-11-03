@@ -6,6 +6,8 @@ import { connectDB } from "./config/db.js";
 // routes
 import foodRoute from "./routes/food.route.js";
 import userRoute from "./routes/user.route.js";
+import cartRoute from "./routes/cart.route.js";
+
 dotenv.config();
 
 const app = express();
@@ -30,6 +32,7 @@ try {
 // APIs
 app.use("/food", foodRoute);
 app.use("/auth", userRoute);
+app.use("/cart", cartRoute);
 
 // start the server
 app.listen(PORT, () => {
