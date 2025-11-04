@@ -64,10 +64,12 @@ The-Moon-Pizza is a full-stack application with the following structure:
 ## Project-Specific Conventions
 
 - **Component Structure**:
+
   - Each component has its own folder with `.jsx` and `.css` files.
   - Example: `frontend/src/components/Navbar/Navbar.jsx` and `Navbar.css`.
 
 - **State Management**:
+
   - `frontend/src/context/StoreContext.jsx` manages global state using React Context API.
 
 - **API Integration**:
@@ -76,10 +78,12 @@ The-Moon-Pizza is a full-stack application with the following structure:
 ## Integration Points
 
 - **Database**:
+
   - MongoDB is used for data storage.
   - Models are defined in `backend/models/`.
 
 - **Authentication**:
+
   - JWT-based authentication.
   - Token creation logic in `backend/utils/createToken.js`.
 
@@ -89,11 +93,13 @@ The-Moon-Pizza is a full-stack application with the following structure:
 ## Examples
 
 ### Adding a New Page
+
 1. Create a folder in `frontend/src/pages/`.
 2. Add `PageName.jsx` and `PageName.css`.
 3. Update routing in `frontend/src/App.jsx`.
 
 ### Adding a New API Endpoint
+
 1. Define the route in `backend/routes/`.
 2. Implement the logic in `backend/controllers/`.
 3. Update the model in `backend/models/` if needed.

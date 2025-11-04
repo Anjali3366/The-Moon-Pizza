@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
@@ -52,6 +52,15 @@ const PlaceOrder = () => {
       alert("Failed to place order. Please try again.");
     }
   };
+  useEffect(() => {
+    if (!token) {
+      alert("Please login to place an order.");
+      navigate("/cart");
+    } else if (getTotalCartAmt() === 0) {
+      alert("Cart is empty. Please add items to place an order.");
+      navigate("/cart");
+    }
+  }, [token]);
   return (
     <form onSubmit={placeOrder} className="place-order">
       <div className="place-order-left">
