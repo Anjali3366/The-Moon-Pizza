@@ -16,6 +16,9 @@
   grid-template-columns: 2fr 1fr 1fr;
   gap: 80px;
 }
+.footer-content .footer-logo {
+  max-width: 300px;
+}
 
 .footer-content-left,
 .footer-content-center,
