@@ -52,6 +52,7 @@ export const placeOrder = async (req, res) => {
   }
 };
 
+// verfiy Order
 export const verifyOrder = async (req, res) => {
   const { orderId, success } = req.body;
   try {
@@ -69,6 +70,44 @@ export const verifyOrder = async (req, res) => {
     }
   } catch (error) {
     console.log("Error in verifyOrder controller:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
+// user Orders for frontend
+
+export const userOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({ userId: req.userId }).sort({
+      createdAt: -1,
+    });
+    res.status(200).json({ success: true, data: orders });
+  } catch (error) {
+    console.error("Error in userOrders controller:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
+export const allOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({}).sort({ createdAt: -1 });
+
+    res.status(200).json({ success: true, data: orders });
+  } catch (error) {
+    console.error("Error in allOrders controller:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+// update order status
+export const updateStatus = async (req, res) => {
+  const { orderId, status } = req.body;
+  try {
+    await Order.findByIdAndUpdate(orderId, { status: status });
+    res
+      .status(200)
+      .json({ success: true, message: "Order status updated successfully" });
+  } catch (error) {
+    console.error("Error in updateStatus controller:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
