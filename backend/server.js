@@ -2,13 +2,12 @@ import express, { Router } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
-
+dotenv.config();
 // routes
 import foodRoute from "./routes/food.route.js";
 import userRoute from "./routes/user.route.js";
 import cartRoute from "./routes/cart.route.js";
-
-dotenv.config();
+import orderRoute from "./routes/order.route.js";
 
 const app = express();
 const PORT = 8080;
@@ -19,7 +18,7 @@ app.use(cors());
 app.use("/uploads", express.static("uploads"));
 
 app.get("/", (req, res) => {
-  res.send("server is working ...");
+  res.send("The MOON's PIZZA server is working ...");
 });
 
 // database connection
@@ -33,6 +32,7 @@ try {
 app.use("/food", foodRoute);
 app.use("/auth", userRoute);
 app.use("/cart", cartRoute);
+app.use("/order", orderRoute);
 
 // start the server
 app.listen(PORT, () => {

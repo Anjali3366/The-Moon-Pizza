@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema(
     },
     items: { type: Array, required: true },
     amount: { type: Number, required: true },
-    address: { type: String, required: true },
+    address: { type: Object, required: true },
     status: {
       type: String,
       enum: [
@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema(
       default: "Processing",
     },
     date: { type: Date, default: Date.now() },
-    payment: { type: Boolean, required: true },
+    payment: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
